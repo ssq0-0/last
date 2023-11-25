@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Обратная связь</title>
+  <!-- Обратите внимание, что в Jinja статические файлы подключаются с помощью url_for -->
+  <link rel="stylesheet" href="{% static 'circulation_page/css/page.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600" rel="stylesheet">
+</head>
+<body>
+<!--  {% if messages %}-->
+<!--        <div class="messages">-->
+<!--            {% for message in messages %}-->
+<!--                <div class="{{ message.tags }}">{{ message }}</div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    {% endif %}-->
+
+  <img src="{% static 'circulation_page/img/iconCircle.png' %}" id="iconC">
+  <img src="{% static 'circulation_page/img/iconsAdvert.png' %}" id="iconA">
+  <div class="feedback-section">
+    <h1 id='spec-head'>ОТПРАВИТЬ ОБРАЩЕНИЕ</h1>
+    <form method="post" id="feedback-form">
+        {% csrf_token %}
+        <div class="input-group">
+          <label>Ваше сообщение</label>
+            {{ form.full_text }}<br>
+        </div>
+        <button type="submit" id="submit-btn" style="vertical-align:middle"><span>Отправить</span></button>
+    </form>
+
+  </div>
+  <div class="info-section">
+    <div class="developers">
+      <h2>РАЗРАБОТЧИКИ</h2>
+        <p>Ратников Максим - Front-end</p>
+        <p>Шебани Антон - DataScince, Backend</p>
+        <p>Дьяков Никита - Backend</p>
+        <p>Гречихин Никита - ML</p>
+        <p>Виталий Нант - Design</p>
+    </div>
+  </div>
+  <script>
+  {% if theme is not None %}
+  {% if category is not None %}
+     alert('Ваше обращение отправлено! \n Категория: {{ category }} \n Тема: {{theme}}')
+     {%endif%}
+     {%endif%}
+  </script>
+  <div class="clickable-area">
+      <script>
+         document.addEventListener('DOMContentLoaded', function() {
+        var area = document.querySelector('.clickable-area');
+        var maxFlashes = 8;
+        var flashes = [];
+
+        setInterval(function() {
+            if (flashes.length < maxFlashes) {
+                createFlash(area);
+            }
+        }, 500);
+
+        function createFlash(container) {
+            var flash = document.createElement('div');
+            flash.classList.add('flash');
+
+            var x = Math.random() * container.offsetWidth;
+            var y = Math.random() * container.offsetHeight;
+
+            flash.style.left = x + 'px';
+            flash.style.top = y + 'px';
+
+            container.appendChild(flash);
+            flashes.push(flash);
+
+            setTimeout(function() {
+                flash.remove();
+                flashes.splice(flashes.indexOf(flash), 1);
+            }, 2500);
+
+            flash.classList.add('show');
+        }
+    });
+    </script>
+  </div>
+</body>
+</html>

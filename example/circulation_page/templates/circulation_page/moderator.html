@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Динамическая страница</title>
+  <style>
+    /* Ваши стили */
+  </style>
+</head>
+<body>
+  <div class="container">
+    {% for item in items %}
+      <div class="item">
+        <div class="category">
+          <span class="label">Категория тем:</span>
+          <span class="value">{{ item.category }}</span>
+        </div>
+        <div class="text">
+          <span class="label">Текст обращения:</span>
+          <span class="value">{{ item.text }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
